@@ -1,0 +1,40 @@
+{
+	"Dates": [{
+		"January": [{
+			"1": [{
+					"1992": "jan1 1992"
+				},
+				{
+					"1993": "jan1 1993"
+				}
+			],
+			"2": [{
+				"1992": "jan2 1992",
+				"1993": "jan2 1993"
+			}]
+		}],
+		"Febuary": [{
+			"1": [{
+				"1992": "feb1 1992",
+				"1993": "feb1 1992"
+			}],
+			"2": [{
+				"1992": "feb2 1992",
+				"1993": "feb2 1993"
+			}]
+		}]
+	}]
+}
+
+{
+	"Events":[
+		{
+		"Date":"isoDate format",
+		"DateDetails":"Event on date"
+		},
+		{
+			"Date":"isoDate format",
+			"DateDetails":"Event on date"
+		}
+	]
+}
