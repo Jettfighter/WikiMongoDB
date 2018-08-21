@@ -6,7 +6,8 @@ var mongodb = require('mongodb')
 
 var mongoClient = mongodb.MongoClient;
 var url = "mongodb://localhost:27017";
-var databaseName = "";
+var databaseName = "TestDataBase";
+var collection = "TestCollection";
 
 var router = express.Router();
 
@@ -37,19 +38,25 @@ router.route("/get").post(function (req, res) {
                 "Day": req.body.DayTextBox,
                 "Year": req.body.YearTextBox
             }
-            console.log(req.body.MonthTextBox);
-            console.log(req.body.DayTextBox);
-            console.log(req.body.YearTextBox);
+            // console.log(req.body.MonthTextBox);
+            // console.log(req.body.DayTextBox);
+            // console.log(req.body.YearTextBox);
 
-            ISODate()
+            // ISODate()
 
-            await db.collection('TestCollection').find();
+            var result = await db.collection(collection).find({"Date":{$gte: new Date(req.body.YearTextBox+"-"+req.body.MonthTextBox+"-"+req.body.DayTextBox)}}).toArray();
+            // > db.TestCollection.find({"Date":{$gte: new Date("1990-01-01")}}).pretty()
+            
+            
             // var item = await db.collection("items").findOne({ "item": req.params.item })
-            res.redirect('/ThisDayInTime/' + req.body.MonthTextBox+"_"+req.body.DayTextBox+"_"+req.body.YearTextBox);
+            res.send(result);
+            console.log(result);
+            // res.redirect('/ThisDayInTime/' + req.body.MonthTextBox+"_"+req.body.DayTextBox+"_"+req.body.YearTextBox);
             // res.render("additem", model);
+            console.log("No Error");
         } catch (err) {
-            console.log("Add Item Error");
             console.log(err);
+            console.log("Error getting data")
             res.json(err);
         } finally {
             client.close();
@@ -65,7 +72,7 @@ router.route("/ThisDayInTime/{theDate}").get(function (request, response) {
         h1Text: "Pug index page"
 
     };
-    response.render('index', data);
+    response.render('theDate', data);
 
 }
 );

@@ -1,40 +1,28 @@
 {
-	"Dates": [{
-		"January": [{
-			"1": [{
-					"1992": "jan1 1992"
-				},
-				{
-					"1993": "jan1 1993"
-				}
-			],
-			"2": [{
-				"1992": "jan2 1992",
-				"1993": "jan2 1993"
-			}]
-		}],
-		"Febuary": [{
-			"1": [{
-				"1992": "feb1 1992",
-				"1993": "feb1 1992"
-			}],
-			"2": [{
-				"1992": "feb2 1992",
-				"1993": "feb2 1993"
-			}]
-		}]
-	}]
-}
-
-{
-	"Events":[
+	"Events": [
 		{
-		"Date":"isoDate format",
-		"DateDetails":"Event on date"
+			"Date": "1992-01-01",
+			"DateDetails": "jan 1 1992"
 		},
 		{
-			"Date":"isoDate format",
-			"DateDetails":"Event on date"
+			"Date": "1992-01-02",
+			"DateDetails": "jan 2 1992"
+		},
+		{
+			"Date": "1992-02-01",
+			"DateDetails": "feb 1 1992"
+		},
+		{
+			"Date": "1992-02-02",
+			"DateDetails": "feb 2 1992"
+		},
+		{
+			"Date": "1992-03-01",
+			"DateDetails": "mar 1 1992"
+		},
+		{
+			"Date": "1992-03-02",
+			"DateDetails": "mar 2 1992"
 		}
 	]
 }
