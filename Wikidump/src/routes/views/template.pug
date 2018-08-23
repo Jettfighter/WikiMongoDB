@@ -1,10 +1,12 @@
-doctype
 html
     head
-        title Template
+        title=title
     body
-        p Date: #{result.Date}
-        p Details #{result.Details}
+        p Date: #{Date}
+        p Details: #{Details}
         br
-        #menu
-            a(href='/') Enter new date
+        //- div(Name="DateDiv")=Date
+        //- div(Name="DetailsDiv")=Details
+        //- br
+        //- #menu
+        //-     a(href='/') Enter new date

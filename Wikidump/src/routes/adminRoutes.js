@@ -9,11 +9,17 @@ var databaseName = "TestDataBase";
 
 router.route("/loadData").get(
     function (req, res) {
-        var fileData = JSON.parse(fs.readFileSync("./src/data/testData2.json", "utf8"));
-        console.log(fileData.Date);
+        var fileData = JSON.parse(fs.readFileSync("./src/data/testData3.json", "utf8"));
+        
         var timeZoneSTR = "T14:12:00Z"
-        var parsedDate = new Date(fileData.Date+timeZoneSTR);
-        fileData.Date = parsedDate;
+        for (let index = 0; index < fileData.Events.length; index++) {
+            const element = fileData.Events[index];
+            var parsedDate = new Date(element.Date+timeZoneSTR);
+            element.Date = parsedDate;
+            // console.log(element.Date);
+            
+        }
+        
         // var date = new Date("1990-01-01"+timeZoneSTR);
         // fileData.add_date = new Date(date);
         // var fileData = [{
@@ -34,12 +40,12 @@ router.route("/loadData").get(
                 var result1 = await db.collection("TestCollection").insertOne(fileData);
 
 
-                res.json(result1);
-                res.send("Data Loaded");
+                // res.json(result1);
+                // res.send(result1);
                 // console.log(result1);
             } catch (err) {
                 res.send(err);
-                console.log(err);
+                // console.log(err);
             } finally {
                 client.close();
             }
