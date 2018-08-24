@@ -34,16 +34,24 @@ router.route("/get").post(function (req, res) {
             var month = req.body.MonthTextBox;
             var day = req.body.DayTextBox;
             var year = req.body.YearTextBox;
-            
-            // var result1 = await db.collection(collection).find({"Date":{$gte: new Date(year+"-"+month+"-"+day)}}).toArray();
+            var date = new Date(year+"-"+month+"-"+day);
+            // var date2 = new Date();
+            // console.log(date2);
+
+            var result1 = await db.collection(collection).find({"Date": new Date(year+"-"+month+"-"+day)}).toArray();
+            console.log(result1);
+            // ollection.findOne({last_updated: new Date('2014-01-22T14:56:59.301Z')}
             // var result2 = await db.collection(collection).find({"Date":{$gte: new Date(year+"-"+month+"-"+day)}});
-            var result3 = await db.collection(collection).find().toArray();
-            console.log("Results"+result3);
-            for (let index = 0; index < result3.Events.length; index++) {
-                const element = result3.Events[index];
-                console.log("Element"+element);
-                
-            }
+            // var result3 = await db.collection(collection).find({Events:date}).toArray();
+            // db.getCollection('sensorevents').find({from:{$gt: new ISODate('2015-08-30 16:50:24.481Z')}})
+            // console.log("Result3");
+            // console.log(result3);
+            // console.log("Results"+result3);
+            // for (let index = 0; index < result3.Events.length; index++) {
+            //     const element = result3.Events[index];
+            //     console.log("Element"+element);
+
+            // }
 
             // var date = result1[0].Date;
             // var dateStr = date.toString().substring(4,15);
@@ -58,11 +66,11 @@ router.route("/get").post(function (req, res) {
             // console.log("Modeltitle: "+model.title);
             // console.log("Modeldate: "+model.Date);
             // console.log("Modeldetails: "+model.Details);
-            
 
-            res.send(result3);
+
+            // res.send(result3);
             // console.log("Result Array: "+result.Details);
-            var redirectURL = "/ThisDayInTime/"+month+"/"+day+"/"+year
+            // var redirectURL = "/ThisDayInTime/"+month+"/"+day+"/"+year
             // res.redirect(redirectURL);
             // res.render("template", model);
             console.log("No Error");

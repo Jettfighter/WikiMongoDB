@@ -10,28 +10,29 @@ var databaseName = "TestDataBase";
 router.route("/loadData").get(
     function (req, res) {
         var fileData = JSON.parse(fs.readFileSync("./src/data/testData3.json", "utf8"));
-        
+        // console.log(fileData.Births);
         var timeZoneSTR = "T14:12:00Z"
+        // var timeZoneSTR = "17:00:00.00";
+        // console.log("Event Stuff");
         for (let index = 0; index < fileData.Events.length; index++) {
-            const element = fileData.Events[index];
-            var parsedDate = new Date(element.Date+timeZoneSTR);
-            element.Date = parsedDate;
-            // console.log(element.Date);
-            
+            // console.log(fileData.Events[index].Date);
+            var strDate = fileData.Events[index].Date;
+            var parsedDate = new Date(strDate + timeZoneSTR);
+            fileData.Events[index].Date = parsedDate;
+        }
+        for (let index = 0; index < fileData.Births.length; index++) {
+            // console.log(fileData.Births[index].Date);
+            var strDate = fileData.Births[index].Date;
+            var parsedDate = new Date(strDate + timeZoneSTR);
+            fileData.Births[index].Date = parsedDate;
+        }
+        for (let index = 0; index < fileData.Deaths.length; index++) {
+            // console.log(fileData.Deaths[index].Date);
+            var strDate = fileData.Deaths[index].Date;
+            var parsedDate = new Date(strDate + timeZoneSTR);
+            fileData.Deaths[index].Date = parsedDate;
         }
         
-        // var date = new Date("1990-01-01"+timeZoneSTR);
-        // fileData.add_date = new Date(date);
-        // var fileData = [{
-        //     "Date": date
-        // }];
-
-        // console.log(date);
-        // console.log((fileData));
-
-        // console.log(fileData);
-
-        // IIFE Weirdness
         (async function mongo() {
             try {
                 var client = await mongoClient.connect(url);
@@ -41,8 +42,8 @@ router.route("/loadData").get(
 
 
                 // res.json(result1);
-                // res.send(result1);
-                // console.log(result1);
+                res.send("DataLoaded");
+                console.log("DataLoaded");
             } catch (err) {
                 res.send(err);
                 // console.log(err);
