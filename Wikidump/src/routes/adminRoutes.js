@@ -5,45 +5,49 @@ var mongoClient = require('mongodb').MongoClient;
 var router = express.Router();
 
 var url = "mongodb://localhost:27017";
-var databaseName = "TestDataBase";
+// var databaseName = "ThisDayInHistory";
 
 router.route("/loadData").get(
     function (req, res) {
-        var fileData = JSON.parse(fs.readFileSync("./src/data/testData3.json", "utf8"));
-        // console.log(fileData.Births);
-        var timeZoneSTR = "T14:12:00Z"
-        // var timeZoneSTR = "17:00:00.00";
-        // console.log("Event Stuff");
-        for (let index = 0; index < fileData.Events.length; index++) {
-            // console.log(fileData.Events[index].Date);
-            var strDate = fileData.Events[index].Date;
-            var parsedDate = new Date(strDate + timeZoneSTR);
-            fileData.Events[index].Date = parsedDate;
-        }
-        for (let index = 0; index < fileData.Births.length; index++) {
-            // console.log(fileData.Births[index].Date);
-            var strDate = fileData.Births[index].Date;
-            var parsedDate = new Date(strDate + timeZoneSTR);
-            fileData.Births[index].Date = parsedDate;
-        }
-        for (let index = 0; index < fileData.Deaths.length; index++) {
-            // console.log(fileData.Deaths[index].Date);
-            var strDate = fileData.Deaths[index].Date;
-            var parsedDate = new Date(strDate + timeZoneSTR);
-            fileData.Deaths[index].Date = parsedDate;
-        }
+        var Events = JSON.parse(fs.readFileSync("./src/data/Events.json", "utf8"));
+        // var Births = JSON.parse(fs.readFileSync("./src/data/Births.json", "utf8"));
+        // var Deaths = JSON.parse(fs.readFileSync("./src/data/Deaths.json", "utf8"));
+        // var timeZoneSTR = "T14:12:00Z"
+        console.log(Events);
+        // console.log(Births);
+        // console.log(Deaths);
+
+        // for (let index = 0; index < Events.length; index++) {
+        //     // console.log(fileData.Events[index].Date);
+        //     var strDate = Events[index].Date;
+        //     var parsedDate = new Date(strDate + timeZoneSTR);
+        //     Events[index].Date = parsedDate;
+        // }
+        // for (let index = 0; index < Births.length; index++) {
+        //     // console.log(fileData.Events[index].Date);
+        //     var strDate = Births[index].Date;
+        //     var parsedDate = new Date(strDate + timeZoneSTR);
+        //     Births[index].Date = parsedDate;
+        // }
+        // for (let index = 0; index < Deaths.length; index++) {
+        //     // console.log(fileData.Events[index].Date);
+        //     var strDate = Deaths[index].Date;
+        //     var parsedDate = new Date(strDate + timeZoneSTR);
+        //     Deaths[index].Date = parsedDate;
+        // }
+        
         
         (async function mongo() {
             try {
                 var client = await mongoClient.connect(url);
                 var db = client.db(databaseName);
 
-                var result1 = await db.collection("TestCollection").insertOne(fileData);
+                // var result1 = await db.collection("TestCollection").insertOne(fileData);
 
 
                 // res.json(result1);
-                res.send("DataLoaded");
-                console.log("DataLoaded");
+                // res.send("DataLoaded");
+                // console.log("DataLoaded");
             } catch (err) {
                 res.send(err);
                 // console.log(err);
