@@ -2,10 +2,11 @@ html
     head
         title=title
     body
-        p Type: #{type}
-        p Date: #{Date}
-        p Details: #{Details}
-        br
+        for n in []
+            p Type: #{type}
+            p Date: #{Date}
+            p Details: #{Details}
+            br
         //- div(Name="DateDiv")=Date
         //- div(Name="DetailsDiv")=Details
         //- br
