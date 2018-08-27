@@ -7,8 +7,8 @@ var mongodb = require('mongodb')
 var mongoClient = mongodb.MongoClient;
 var url = "mongodb://localhost:27017";
 // var databaseName = "ThisDayInHistory";
-var databaseName = "test";
-var collection = "events";
+var databaseName = "test2";
+var collection = "newcollection";
 // var Events = "Events";
 
 var router = express.Router();
@@ -41,13 +41,14 @@ router.route("/get").post(function (req, res) {
             var details;
 
             var result4 = await db.collection(collection).find({Date:date}).toArray();
-            // console.log(result4);
+            console.log(result4);
+            
             for (let i = 0; i < result4.length; i++) {
                 const element = result4[i];
-                console.log(element.Date);
-                console.log(element.Details);
-                date = element.Date;
-                details = element.Details;
+                // console.log(element.Date);
+                // console.log(element.Details);
+                // date = element.Date;
+                // details = element.Details;
                 
             }
            
@@ -55,9 +56,7 @@ router.route("/get").post(function (req, res) {
    
             var model = {
                 title : "This Day In History",
-                type: "Event",
-                Date : date,
-                Details : details
+                result: result4
             }
 
 

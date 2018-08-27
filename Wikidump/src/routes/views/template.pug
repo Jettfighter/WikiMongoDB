@@ -2,13 +2,12 @@ html
     head
         title=title
     body
-        for n in []
-            p Type: #{type}
-            p Date: #{Date}
-            p Details: #{Details}
+        #menu
+            a(class='button', href='/') Menu
+        for n in result
+            p Date: #{n.Date}
+            p Details: #{n.Details}
             br
-            #menu
-                a(class='button', href='index.pug') Menu
         //- div(Name="DateDiv")=Date
         //- div(Name="DetailsDiv")=Details
         //- br
